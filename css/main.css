@@ -1,0 +1,275 @@
+/* CONNECT FONTS ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+
+/* RESET STYLES ======================================== */
+* {margin: 0;border: 0;padding: 0;}
+*,*::before,*::after {box-sizing: inherit;}
+html,body {min-height: 100%;box-sizing: border-box;}
+li {list-style: none;}
+button {font: inherit;color: inherit;background: transparent;cursor: pointer;}
+h1,h2,h3 {font: inherit;font-weight: 700;}
+
+/* COMMON STYLES ========================================*/
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: radial-gradient(circle at top center,hsl(214, 47%, 23%) 0,hsl(238, 48%, 15%) 100%);
+  color: hsl(0, 0%, 100%);
+}
+.hide {
+  height: 0;
+  opacity: 0;
+  transform: scale(0);
+  overflow: hidden;
+  visibility: hidden;
+}
+#paper {background: linear-gradient(#4865f4, #5671f5);box-shadow: inset 0 -8px #2b44c3;}
+#scissors {background: linear-gradient(#ec9e0e, #eca922);box-shadow: inset 0 -8px #c16a1b;}
+#rock {background: linear-gradient(#dc2e4e, #dd405d);box-shadow: inset 0 -8px #9c1732;}
+
+.main,
+/* HEADER STYLES ========================================*/
+.header {padding-top: 25px;}
+.header__container {
+  max-width: 695px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border: 3px solid hsl(217, 16%, 45%);
+  border-radius: 8px;
+}
+.score {
+  width: 150px;
+  height: 110px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: hsl(0, 0%, 100%);
+}
+.score__title {color: hsl(229, 64%, 46%);}
+.score__value {
+  font-size: 46px;
+  font-weight: 700;
+  color: hsl(228, 25%, 31%);
+}
+
+/* HOME SECTION STYLES ========================================*/
+.home {transition: all 1s;}
+.home__body {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.home__background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.home__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home__button,
+.home__button svg {
+  position: relative;
+  transition: transform 0.3s;
+}
+.home__button {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+}
+.home__button:hover {transform: scale(0.9);}
+.home__button:hover svg {transform: scale(1.5);}
+
+/* GAME BLOCK STYLES ========================================*/
+.game-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  transition: all 1s;
+}
+.game-block__column {
+  width: 242px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+.game-block__title {font-size: 24px;margin-bottom: 15px;}
+.game-block__choice {
+  position: relative;
+  width: 155px;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: hsla(238, 57%, 9%, 0.25);
+  transition: all 0.5s;
+}
+.game-block__choice svg {transform: scale(2);}
+.game-block__choice:not([id='']) {width: 265px;height: 265px;}
+.home__button::before,
+.game-block__choice:not([id=''])::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: inset 0 12px 2px hsla(0, 0%, 0%, 0.149);
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
+#resultsTitle {font-size: 42px;}
+.game-block__button {
+  padding: 12px 56px;
+  border-radius: 8px;
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(229, 25%, 31%);
+  transition: all 0.5s;
+}
+.game-block__button:hover {color: hsl(349, 71%, 52%);}
+.win::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 45px hsla(0, 0%, 100%, 0.07),
+    0 0 0 80px hsla(0, 0%, 100%, 0.04),
+    0 0 0 120px hsla(0, 0%, 100%, 0.02);
+  animation: blink 2s infinite linear;
+}
+@keyframes blink {
+  0% {opacity: 0;transform: scale(0.9);}
+  50% {opacity: 0.7;transform: scale(1);}
+  100% {opacity: 0;transform: scale(0.9);}
+}
+
+/* MODAL STYLES ========================================*/
+.rules-button {position: absolute;
+  right: 30px;
+  bottom: 30px;
+  padding: 12px 56px;
+  border-radius: 8px;
+  border: 2px solid hsl(217, 16%, 45%);
+  transition: border-color 0.5s;
+}
+.rules-button:hover {border-color: hsl(0, 0%, 100%);}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  display: block;
+  visibility: hidden;
+  scale: 0;
+  opacity: 0;
+  border-radius: 8px;
+  transition: all 0.5s;
+  z-index: 5;
+}
+.modal[open] {
+  left: 50%;
+  scale: 1;
+  opacity: 1;
+  visibility: visible;
+}
+.modal::backdrop {background-color: hsla(0, 0%, 0%, 0.5);}
+.modal__inner {padding: 15px;}
+.modal__block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.modal__title {font-size: 24px;color: hsl(228, 25%, 31%);}
+.modal__close svg {opacity: 0.75;transition: opacity 0.5s;}
+.modal__close:hover svg {opacity: 1;}
+
+
+
+@media (max-width: 767px) {
+  /* HEADER STYLES ========================================*/
+  .header__container {max-width: 80%;padding: 10px;}
+  .header__logo {height: 60px;}
+  .score {width: 80px;height: 80px;}
+  .score__value {font-size: 36px;}
+
+  /* HOME SECTION STYLES ========================================*/
+  .home__background svg {width: 280px;height: 240px;}
+  .home__button {width: 135px;height: 135px;}
+
+  /* GAME BLOCK STYLES ========================================*/
+  .game-block {
+    flex-wrap: wrap;
+    padding-top: 25px;
+    gap: 25px;
+  }
+  .game-block__column {
+    width: calc(50% - 35px);
+    gap: 15px;
+    flex-direction: column-reverse;
+  }
+  .score__title,
+  .game-block__title {font-size: 14px;}
+  .game-block__choice {width: 105px;height: 105px;}
+  .game-block__choice svg {transform: scale(1);}
+  .game-block__choice:not([id='']) {width: 125px;height: 125px;}
+  .results-block {
+    width: fit-content;
+    flex-direction: column;
+    order: 3;
+    gap: 5px;
+  }
+  .win::after {
+    width: 95%;
+    height: 95%;
+    box-shadow:
+      0 0 0 25px hsla(0, 0%, 100%, 0.07),
+      0 0 0 45px hsla(0, 0%, 100%, 0.04),
+      0 0 0 65px hsla(0, 0%, 100%, 0.02);
+  }
+
+  /* MODAL STYLES ========================================*/
+  .rules-button {right: 50%;transform: translateX(50%);}
+  .modal {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+  .modal__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .modal__block {margin: 45px 0 85px;}
+  .modal__close {
+    position: absolute;
+    right: 50%;
+    bottom: 45px;
+    transform: translateX(50%);
+  }
+}
